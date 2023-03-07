@@ -10,11 +10,10 @@ import AVFoundation
 
 struct ContentView: View {
     @State private var selection = 0
-    @State var player: AVAudioPlayer?
-    
+
     var body: some View {
         TabView(selection: $selection) {
-            PlayerView(player: $player)
+            PlayerView()
                 .tag(0)
         }
     }
