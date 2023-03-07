@@ -11,6 +11,10 @@
 		3F03AC9129993BCE00BCF09F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F03AC9029993BCE00BCF09F /* ContentView.swift */; };
 		3F03AC9329993BCE00BCF09F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F03AC9229993BCE00BCF09F /* Assets.xcassets */; };
 		3F03AC9629993BCE00BCF09F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F03AC9529993BCE00BCF09F /* Preview Assets.xcassets */; };
+		3FCBEBB429B4E68B0036A226 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBEBB329B4E68B0036A226 /* PlayerView.swift */; };
+		3FCBEBB729B4F1640036A226 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBEBB629B4F1640036A226 /* Player.swift */; };
+		495EE1935D5B1EA90A3053E1 /* Pods_TeleBeat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64FF857A2C0F241268AA96A3 /* Pods_TeleBeat.framework */; };
+		D317C02A089DDA04627FC19F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CAC457A203766D956533 /* Song.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,12 @@
 		3F03AC9029993BCE00BCF09F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3F03AC9229993BCE00BCF09F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F03AC9529993BCE00BCF09F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3FCBEBB329B4E68B0036A226 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		3FCBEBB629B4F1640036A226 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		64FF857A2C0F241268AA96A3 /* Pods_TeleBeat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeleBeat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF7DB74B1FE71A427389E10F /* Pods-TeleBeat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeleBeat.debug.xcconfig"; path = "Target Support Files/Pods-TeleBeat/Pods-TeleBeat.debug.xcconfig"; sourceTree = "<group>"; };
+		D317CAC457A203766D956533 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		D767096693BF266AE3D3AC9E /* Pods-TeleBeat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeleBeat.release.xcconfig"; path = "Target Support Files/Pods-TeleBeat/Pods-TeleBeat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,17 +36,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495EE1935D5B1EA90A3053E1 /* Pods_TeleBeat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		083F785AD32D562023952FA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64FF857A2C0F241268AA96A3 /* Pods_TeleBeat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3F03AC8229993BCE00BCF09F = {
 			isa = PBXGroup;
 			children = (
 				3F03AC8D29993BCE00BCF09F /* TeleBeat */,
 				3F03AC8C29993BCE00BCF09F /* Products */,
+				9FDC2539D96E6C4AC9D59500 /* Pods */,
+				083F785AD32D562023952FA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,10 +72,14 @@
 		3F03AC8D29993BCE00BCF09F /* TeleBeat */ = {
 			isa = PBXGroup;
 			children = (
+				3F03AC9E2999410600BCF09F /* Assets */,
 				3F03AC8E29993BCE00BCF09F /* TeleBeatApp.swift */,
 				3F03AC9029993BCE00BCF09F /* ContentView.swift */,
+				3FCBEBB329B4E68B0036A226 /* PlayerView.swift */,
 				3F03AC9229993BCE00BCF09F /* Assets.xcassets */,
 				3F03AC9429993BCE00BCF09F /* Preview Content */,
+				3FCBEBB629B4F1640036A226 /* Player.swift */,
+				D317CAC457A203766D956533 /* Song.swift */,
 			);
 			path = TeleBeat;
 			sourceTree = "<group>";
@@ -67,6 +92,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		3F03AC9E2999410600BCF09F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		9FDC2539D96E6C4AC9D59500 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF7DB74B1FE71A427389E10F /* Pods-TeleBeat.debug.xcconfig */,
+				D767096693BF266AE3D3AC9E /* Pods-TeleBeat.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F03AC9929993BCE00BCF09F /* Build configuration list for PBXNativeTarget "TeleBeat" */;
 			buildPhases = (
+				B550B376E154340707D52838 /* [CP] Check Pods Manifest.lock */,
 				3F03AC8729993BCE00BCF09F /* Sources */,
 				3F03AC8829993BCE00BCF09F /* Frameworks */,
 				3F03AC8929993BCE00BCF09F /* Resources */,
+				5846946F24646F71120468A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,13 +175,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5846946F24646F71120468A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeleBeat/Pods-TeleBeat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeleBeat/Pods-TeleBeat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeleBeat/Pods-TeleBeat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B550B376E154340707D52838 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TeleBeat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3F03AC8729993BCE00BCF09F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FCBEBB729B4F1640036A226 /* Player.swift in Sources */,
 				3F03AC9129993BCE00BCF09F /* ContentView.swift in Sources */,
 				3F03AC8F29993BCE00BCF09F /* TeleBeatApp.swift in Sources */,
+				3FCBEBB429B4E68B0036A226 /* PlayerView.swift in Sources */,
+				D317C02A089DDA04627FC19F /* Song.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +349,7 @@
 		};
 		3F03AC9A29993BCE00BCF09F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF7DB74B1FE71A427389E10F /* Pods-TeleBeat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -290,6 +379,7 @@
 		};
 		3F03AC9B29993BCE00BCF09F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D767096693BF266AE3D3AC9E /* Pods-TeleBeat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

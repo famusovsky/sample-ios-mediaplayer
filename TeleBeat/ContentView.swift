@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
+    @State private var selection = 0
+    @State var player: AVAudioPlayer?
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView(selection: $selection) {
+            PlayerView(player: $player)
+                .tag(0)
         }
-        .padding()
     }
 }
 
