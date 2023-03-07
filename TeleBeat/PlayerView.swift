@@ -47,11 +47,12 @@ struct PlayerView: View {
                         }
                     }
                     Button(action: {
-                        print("play")
                         if isPlaying {
+                            print("play")
                             Player.pause()
                             isPlaying = false
                         } else {
+                            print("pause")
                             Player.play()
                             isPlaying = true
                         }

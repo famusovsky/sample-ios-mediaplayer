@@ -43,7 +43,6 @@
 			children = (
 				3F03AC8D29993BCE00BCF09F /* TeleBeat */,
 				3F03AC8C29993BCE00BCF09F /* Products */,
-				9FDC2539D96E6C4AC9D59500 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,13 +82,6 @@
 			children = (
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		9FDC2539D96E6C4AC9D59500 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
