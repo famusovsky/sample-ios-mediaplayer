@@ -6,20 +6,41 @@
 //
 
 import SwiftUI
-import AVFoundation
 
-struct PlayerView: View {
+struct PlayerView: View, PlayerUser {
     @State var currentSong: Song?
-    @State var isPlaying = false
+    @State var currentArtwork: UIImage?
+    @State var isPlayToggled: Bool = false
+    private let standartArtwork = UIImage(systemName: "rays")!
+
+
+    init() {
+        Player.concreteUser(user: self)
+    }
 
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 24) {
-                Image(uiImage: currentSong?.artwork ?? UIImage(systemName: "music.note")!)
+                Button(action: {
+                    Task {
+                        // TODO: сделать нормально + иногда падает
+                        let song = await Song.getFromURL(url: URL(string: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")!)
+                        Player.addSong(song: song)
+                        updateSong()
+                    }
+                }) {
+                    Image(systemName: "plus.app")
+                            .font(.system(.title))
+                            .foregroundColor(.pink)
+                            .shadow(radius: 10)
+                            .position(x: geometry.size.width * 8 / 10, y: geometry.size.height / 10)
+                }
+                Image(uiImage: currentArtwork ?? standartArtwork)
                         .resizable()
                         .cornerRadius(20)
                         .shadow(radius: 10)
-                        .frame(width: geometry.size.width, height: geometry.size.width)
+                        .frame(width: geometry.size.width / 2, height: geometry.size.width / 2)
+                        .position(x: geometry.size.width / 2, y: -geometry.size.height / 40)
 
                 VStack(spacing: 8) {
                     Text(currentSong?.name ?? "")
@@ -34,7 +55,9 @@ struct PlayerView: View {
 
                 HStack(spacing: 24) {
                     Button(action: {
-                        print("Rewind")
+                        Player.rewind()
+                        isPlayToggled = Player.isPlaying()
+                        updateSong()
                     }) {
                         ZStack {
                             Circle()
@@ -47,32 +70,28 @@ struct PlayerView: View {
                         }
                     }
                     Button(action: {
-                        if isPlaying {
-                            print("play")
+                        if Player.isPlaying() {
                             Player.pause()
-                            isPlaying = false
                         } else {
-                            print("pause")
                             Player.play()
-                            isPlaying = true
                         }
+                        isPlayToggled = Player.isPlaying()
+                        updateSong()
                     }) {
                         ZStack {
                             Circle()
                                     .frame(width: 80, height: 80)
                                     .accentColor(.pink)
                                     .shadow(radius: 10)
-                            Image(systemName: self.isPlaying == true ? "pause.fill" : "play.fill")
+                            Image(systemName: isPlayToggled ? "pause.fill" : "play.fill")
                                     .foregroundColor(.white)
                                     .font(.system(.title))
                         }
                     }
                     Button(action: {
-                        print("Skip")
-                        Task {
-                            currentSong = await Song.getFromURL(url: URL(string: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")!)
-                            Player.addSong(song: currentSong)
-                        }
+                        Player.skip()
+                        isPlayToggled = Player.isPlaying()
+                        updateSong()
                     }) {
                         ZStack {
                             Circle()
@@ -85,6 +104,16 @@ struct PlayerView: View {
                         }
                     }
                 }
+            }
+        }
+    }
+
+   // TODO: не работает нормально почему то при вызове по протоколу
+   public func updateSong() {
+        Task {
+            if let song = Player.getCurrentSong() {
+                currentSong = song
+                currentArtwork = await song.getArtwork()
             }
         }
     }

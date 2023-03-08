@@ -9,62 +9,66 @@ import Foundation
 import AVFoundation
 
 public class Player {
-    private static var player: AVPlayer!
+    private static var player: AVPlayer! = AVPlayer()
     private static var songs: [Song] = []
     private static var current: Int = 0
+    private static var user: PlayerUser?
+    private static var isPlayToggled: Bool = false
 
     static func play() {
         if let player = player {
             player.play()
+            isPlayToggled = true
         }
     }
 
     static func pause() {
         if let player = player {
             player.pause()
+            isPlayToggled = false
         }
     }
 
     static func skip() {
+        setupSongNumber(num: current + 1)
+    }
+
+    static func rewind() {
+        setupSongNumber(num: current - 1)
+    }
+
+    static func setupSongNumber(num: Int) {
         if player != nil {
-            player.pause()
-            current += 1
-            if current >= songs.count {
-                current = songs.count - 1
-            } else {
-                let song = songs[current]
-                print("playing \(song.url): \(song.name)")
-                do {
-                    //TODO: add error handling and make normal
-                    let playerItem = AVPlayerItem(url: song.url)
-                    player = AVPlayer(playerItem: playerItem)
-                    player.volume = 1.0
+            if num >= 0 && num < songs.count {
+                player.pause()
+                current = num
+                print(current, songs.count)
+                concreteCurrentSong()
+                if isPlaying() {
                     player.play()
-                } catch {
-                    print("AVAudioPlayer init failed")
+                }
+            } else {
+                if num >= songs.count {
+                    current = songs.count - 1
+                } else {
+                    current = 0
                 }
             }
         }
     }
 
-    static func rewind() {
-        if player != nil {
-            player.pause()
-            current -= 1
-            if current <= 0 {
-                current = 0
-            } else {
-                let song = songs[current]
-                print("playing \(song.url): \(song.name)")
-                do {
-                    //TODO: add error handling and make normal
-                    let playerItem = AVPlayerItem(url: song.url)
-                    player = AVPlayer(playerItem: playerItem)
-                    player.volume = 1.0
-                    player.play()
-                } catch {
-                    print("AVAudioPlayer init failed")
-                }
+    private static func concreteCurrentSong() {
+        if songs.count != 0 {
+            let song = songs[current]
+            print("playing \(song.url): \(song.name)")
+            do {
+                //TODO: add error handling and make normal
+                let playerItem = AVPlayerItem(url: song.url)
+                player = AVPlayer(playerItem: playerItem)
+                player.volume = 1.0
+                print(isPlaying())
+            } catch {
+                print("AVAudioPlayer init failed")
             }
         }
     }
@@ -72,7 +76,28 @@ public class Player {
     static func addSong(song: Song?) {
         if let song = song {
             songs.append(song)
+
+            if songs.count == 1 {
+                concreteCurrentSong()
+            }
         }
+    }
+
+    static func getCurrentSong() -> Song? {
+        if songs.count > 0 {
+            return songs[current]
+        } else {
+            return nil
+        }
+    }
+
+    static func concreteUser(user: PlayerUser) {
+        self.user = user
+        print("user is added")
+    }
+
+    static func isPlaying() -> Bool {
+        isPlayToggled
     }
 }
 

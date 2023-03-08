@@ -6,19 +6,18 @@ import Foundation
 import AVFoundation
 import UIKit
 
+// TODO: сделать codable
 public struct Song {
     let name: String
     let artist: String
     let album: String
-    let artwork: UIImage
     let duration: CMTime
     let url: URL
 
-    init(name: String?, artist: String?, album: String?, artwork: UIImage?, duration: CMTime?, url: URL) {
+    init(name: String?, artist: String?, album: String?, duration: CMTime?, url: URL) {
         self.name = name ?? "Name is Unknown"
         self.artist = artist ?? "Artist is Unknown"
         self.album = album ?? "Album is Unknown"
-        self.artwork = artwork ?? UIImage(systemName: "music.note")!
         self.duration = duration ?? CMTime(seconds: 0, preferredTimescale: 1)
         self.url = url
     }
@@ -37,7 +36,6 @@ public extension Song {
         var name: String?
         var artist: String?
         var album: String?
-        var artwork: UIImage?
         var duration: CMTime?
         do {
             try await duration = data.load(.duration)
@@ -54,18 +52,44 @@ public extension Song {
                 print(error)
             }
 
-            guard let key = key, let value = value else { continue }
+            guard let key = key, let value = value else {
+                continue
+            }
 
             switch key {
-            case "title" : name = value as? String
+            case "title": name = value as? String
             case "artist": artist = value as? String
             case "album": album = value as? String
-            case "artwork" where value is Data : artwork = UIImage(data: value as! Data)
             default:
                 continue
             }
         }
 
-        return Song(name: name, artist: artist, album: album, artwork: artwork, duration: duration, url: url)
+        return Song(name: name, artist: artist, album: album, duration: duration, url: url)
+    }
+
+    func getArtwork() async -> UIImage? {
+        let data = AVURLAsset(url: url, options: nil)
+        var commonMetadata: [AVMetadataItem] = []
+        do {
+            try await commonMetadata = data.load(.commonMetadata)
+        } catch {
+            print(error)
+        }
+
+        if let artwork = commonMetadata.first(where: { $0.commonKey?.rawValue == "artwork" }) {
+            var value: Any?
+            do {
+                try await value = artwork.load(.value)
+                if let value = value as? Data {
+                    return UIImage(data: value)
+                }
+            } catch {
+                print(error)
+            }
+        }
+
+        return nil
     }
 }
+
