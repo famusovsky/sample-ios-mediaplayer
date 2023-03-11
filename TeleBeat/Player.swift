@@ -14,6 +14,7 @@ public class Player {
     private static var current: Int = 0
     private static var user: PlayerUser?
     private static var isPlayToggled: Bool = false
+    private static let tgClient = TGClient()
 
     static func play() {
         if let player = player {

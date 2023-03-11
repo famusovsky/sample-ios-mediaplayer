@@ -11,6 +11,8 @@
 		3F03AC9129993BCE00BCF09F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F03AC9029993BCE00BCF09F /* ContentView.swift */; };
 		3F03AC9329993BCE00BCF09F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F03AC9229993BCE00BCF09F /* Assets.xcassets */; };
 		3F03AC9629993BCE00BCF09F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F03AC9529993BCE00BCF09F /* Preview Assets.xcassets */; };
+		3FBC278E29BCE245004895DD /* TDLibKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3FBC278D29BCE245004895DD /* TDLibKit */; };
+		3FBC279029BCE28D004895DD /* TGclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBC278F29BCE28D004895DD /* TGclient.swift */; };
 		3FCBEBB429B4E68B0036A226 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBEBB329B4E68B0036A226 /* PlayerView.swift */; };
 		3FCBEBB729B4F1640036A226 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBEBB629B4F1640036A226 /* Player.swift */; };
 		D317C02A089DDA04627FC19F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CAC457A203766D956533 /* Song.swift */; };
@@ -23,6 +25,7 @@
 		3F03AC9029993BCE00BCF09F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3F03AC9229993BCE00BCF09F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F03AC9529993BCE00BCF09F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3FBC278F29BCE28D004895DD /* TGclient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGclient.swift; sourceTree = "<group>"; };
 		3FCBEBB329B4E68B0036A226 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		3FCBEBB629B4F1640036A226 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D317C61C702F2E1FB7510915 /* PlayerObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerObserver.swift; sourceTree = "<group>"; };
@@ -34,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FBC278E29BCE245004895DD /* TDLibKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +72,7 @@
 				3FCBEBB629B4F1640036A226 /* Player.swift */,
 				D317CAC457A203766D956533 /* Song.swift */,
 				D317C61C702F2E1FB7510915 /* PlayerObserver.swift */,
+				3FBC278F29BCE28D004895DD /* TGclient.swift */,
 			);
 			path = TeleBeat;
 			sourceTree = "<group>";
@@ -103,6 +108,9 @@
 			dependencies = (
 			);
 			name = TeleBeat;
+			packageProductDependencies = (
+				3FBC278D29BCE245004895DD /* TDLibKit */,
+			);
 			productName = TeleBeat;
 			productReference = 3F03AC8B29993BCE00BCF09F /* TeleBeat.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +139,9 @@
 				Base,
 			);
 			mainGroup = 3F03AC8229993BCE00BCF09F;
+			packageReferences = (
+				3FBC278C29BCE245004895DD /* XCRemoteSwiftPackageReference "TDLibKit" */,
+			);
 			productRefGroup = 3F03AC8C29993BCE00BCF09F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -161,6 +172,7 @@
 				3F03AC9129993BCE00BCF09F /* ContentView.swift in Sources */,
 				3F03AC8F29993BCE00BCF09F /* TeleBeatApp.swift in Sources */,
 				3FCBEBB429B4E68B0036A226 /* PlayerView.swift in Sources */,
+				3FBC279029BCE28D004895DD /* TGclient.swift in Sources */,
 				D317C02A089DDA04627FC19F /* Song.swift in Sources */,
 				D317C5DEAB8C58946B31B394 /* PlayerObserver.swift in Sources */,
 			);
@@ -363,6 +375,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3FBC278C29BCE245004895DD /* XCRemoteSwiftPackageReference "TDLibKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swiftgram/TDLibKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3FBC278D29BCE245004895DD /* TDLibKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FBC278C29BCE245004895DD /* XCRemoteSwiftPackageReference "TDLibKit" */;
+			productName = TDLibKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F03AC8329993BCE00BCF09F /* Project object */;
 }
