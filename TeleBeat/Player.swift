@@ -16,6 +16,7 @@ public class Player {
     private static var songUsers: [PlayerSongUser] = []
     private static var queueUsers: [PlayerQueueUser] = []
     private static var isPlayToggled: Bool = false
+    private static let tgClient = TGClient()
 
     static func play() {
         if let player = player {
