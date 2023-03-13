@@ -25,6 +25,7 @@ final class ServiceLayer {
 
         chatListService = ChatListService(tdApi: telegramService.api)
         telegramService.add(listener: chatListService)
+        print("ServiceLayer.init()")
     }
 
 }

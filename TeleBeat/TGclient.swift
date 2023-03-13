@@ -12,18 +12,46 @@ public class TGClient {
     internal static let api_id = 27129313
     internal static let api_hash = "5ee6e709a5f6e8f8b7089a4db04a4935"
     private var authService = ServiceLayer.instance.authService
-
+    private var chatListService = ServiceLayer.instance.chatListService
 
     init() throws {
         authService.delegate = self
         try ServiceLayer.instance.telegramService.run()
 
-        authService.sendPhone("+79955024221")
-        let code = readLine()
-        while code == nil {
-            authService.sendCode(code ?? "")
+        authService.sendPhone("+7(995)502-42-21")
+        var code: String? = nil
+        while true {
+            code = readLine()
+            if code != nil {
+                break
+            }
         }
+        authService.sendCode(code!)
+
+        var password: String? = nil
+        while true {
+            password = readLine()
+            if password != nil {
+                break
+            }
+        }
+        authService.sendPassword(password!)
+
+        getChats()
     }
+
+    func getChats() -> [Int64: Chat] {
+        let chats = chatListService.chats
+        for chat in chats {
+            print(chat)
+        }
+        return chatListService.chats
+    }
+
+    func test() {
+        print("test")
+    }
+
 }
 
 extension TGClient: AuthServiceDelegate {

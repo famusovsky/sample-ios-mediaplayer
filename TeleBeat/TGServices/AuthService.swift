@@ -114,25 +114,32 @@ final class AuthService : UpdateListener {
                     useTestDc: false) { [weak self] in
                 self?.chekResult($0)
             }
+            break
 
         case .authorizationStateWaitPhoneNumber:
             delegate?.waitPhoneNumer()
+            break
 
         case .authorizationStateWaitCode:
             delegate?.waitCode()
+            break
 
         case .authorizationStateWaitPassword(_):
             delegate?.waitPassword()
+            break
 
         case .authorizationStateReady:
             isAuthorized = true
             delegate?.onReady()
+            break
 
         case .authorizationStateLoggingOut:
             isAuthorized = false
+            break
 
         case .authorizationStateClosing:
             isAuthorized = false
+            break
 
         // TODO: add other states
 

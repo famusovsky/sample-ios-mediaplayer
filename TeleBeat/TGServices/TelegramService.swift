@@ -95,6 +95,8 @@ final class UpdateListenerWeakBox {
 
 private extension Array where Element == UpdateListenerWeakBox {
     mutating func compact() {
-        self = self.filter { $0.value != nil }
+        self = self.filter {
+            $0.value != nil
+        }
     }
 }

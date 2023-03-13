@@ -14,7 +14,7 @@ public class Player {
     private static var current: Int = 0
     private static var user: PlayerUser?
     private static var isPlayToggled: Bool = false
-    private static let tgClient = try! TGClient()
+    private static var tgClient = try! TGClient()
 
     static func play() {
         if let player = player {
@@ -94,6 +94,7 @@ public class Player {
 
     static func concreteUser(user: PlayerUser) {
         self.user = user
+        tgClient.test()
         print("user is added")
     }
 
