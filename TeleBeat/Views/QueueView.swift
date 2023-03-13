@@ -5,35 +5,50 @@
 import Foundation
 import SwiftUI
 
-struct QueueView : View, PlayerSongUser, PlayerQueueUser {
-    @State private var songs: [String] = []
-    @State private var current: String = ""
+struct QueueView: View {
+    @ObservedObject var model = QueueViewModel()
+
+    var body: some View {
+        VStack {
+            Text("Now playing: \(model.currentSong ?? "Nothing")")
+            List {
+                ForEach(model.songs.indices, id: \.self) { index in
+                    HStack {
+                        Button(action: {
+                            Player.setupSongNumber(num: index)
+                        }) {
+                            Text(model.songs[index])
+                        }
+                        Spacer()
+                        Button(action: {
+                            Player.removeSong(index: index)
+                        }) {
+                            Image(systemName: "minus.circle")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+class QueueViewModel: ObservableObject, PlayerSongUser, PlayerQueueUser {
+    @Published var currentSong: String?
+    @Published var songs: [String] = []
 
     init() {
         Player.concreteUser(user: self as PlayerSongUser)
         Player.concreteUser(user: self as PlayerQueueUser)
     }
 
-    var body : some View {
-        VStack {
-            Text("Now playing: \(current)")
-            List {
-                ForEach(songs.indices) { index in
-                    Button(action: {
-                        Player.setupSongNumber(num: index)
-                    }) {
-                        Text(self.songs[index])
-                    }
-                }
-            }
-        }
-    }
-
     func updateSong() {
-        current = Player.getCurrentSong()?.name ?? ""
+        currentSong = Player.getCurrentSong()?.name ?? ""
     }
 
     func updateQueue() {
-        songs = Player.getQueue().map { $0.name }
+        let queue = Player.getQueue().map {
+            $0.name
+        }
+        songs = queue
     }
 }

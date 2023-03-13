@@ -11,7 +11,7 @@ import SwiftUI
 
 public class Player {
     private static var player: AVPlayer! = AVPlayer()
-    @State public static var songs: [Song] = []
+    public static var songs: [Song] = []
     private static var current: Int = 0
     private static var songUsers: [PlayerSongUser] = []
     private static var queueUsers: [PlayerQueueUser] = []
@@ -60,12 +60,11 @@ public class Player {
     }
 
     private static func concreteCurrentSong() {
+        for user in songUsers {
+            user.updateSong()
+        }
         if songs.count != 0 {
             let song = songs[current]
-            for user in songUsers {
-                user.updateSong()
-            }
-
             print("playing \(song.url): \(song.name)")
             do {
                 //TODO: add error handling and make normal
@@ -85,10 +84,29 @@ public class Player {
             for user in queueUsers {
                 user.updateQueue()
             }
+            print("song \(song.name) is added")
 
             if songs.count == 1 {
                 concreteCurrentSong()
             }
+        }
+    }
+
+    static func removeSong(index: Int) {
+        if index >= 0 && index < songs.count {
+            songs.remove(at: index)
+            for user in queueUsers {
+                user.updateQueue()
+            }
+            if index < current {
+                current -= 1
+            } else if index == current {
+                if current >= songs.count {
+                    current = songs.count == 0 ? 0 : songs.count - 1
+                }
+                concreteCurrentSong()
+            }
+            print("song is removed")
         }
     }
 

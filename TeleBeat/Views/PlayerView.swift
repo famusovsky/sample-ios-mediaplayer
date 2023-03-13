@@ -7,16 +7,10 @@
 
 import SwiftUI
 
-struct PlayerView: View, PlayerSongUser {
-    @State var currentSong: Song?
-    @State var currentArtwork: UIImage?
+struct PlayerView: View {
+    @ObservedObject var model: PlayerViewModel = PlayerViewModel()
     @State var isPlayToggled: Bool = false
-    private let standartArtwork = UIImage(systemName: "rays")!
-
-
-    init() {
-        Player.concreteUser(user: self)
-    }
+    private let standardArtwork = UIImage(systemName: "app")!
 
     var body: some View {
         GeometryReader { geometry in
@@ -26,7 +20,6 @@ struct PlayerView: View, PlayerSongUser {
                         // TODO: сделать нормально + иногда падает
                         let song = await Song.getFromURL(url: URL(string: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")!)
                         Player.addSong(song: song)
-                        updateSong()
                     }
                 }) {
                     Image(systemName: "plus.app")
@@ -35,7 +28,7 @@ struct PlayerView: View, PlayerSongUser {
                             .shadow(radius: 10)
                             .position(x: geometry.size.width * 8 / 10, y: geometry.size.height / 10)
                 }
-                Image(uiImage: currentArtwork ?? standartArtwork)
+                Image(uiImage: model.currentArtwork ?? standardArtwork)
                         .resizable()
                         .cornerRadius(20)
                         .shadow(radius: 10)
@@ -43,13 +36,13 @@ struct PlayerView: View, PlayerSongUser {
                         .position(x: geometry.size.width / 2, y: -geometry.size.height / 40)
 
                 VStack(spacing: 8) {
-                    Text(currentSong?.name ?? "")
+                    Text(model.currentSong?.name ?? "")
                             .font(.system(.title).bold())
-                    Text(currentSong?.artist ?? "")
+                    Text(model.currentSong?.artist ?? "")
                             .font(.system(.headline))
-                    Text(currentSong?.album ?? "")
+                    Text(model.currentSong?.album ?? "")
                             .font(.system(.subheadline))
-                    Text("\(currentSong?.duration.seconds ?? 0, specifier: "%.2f")")
+                    Text("\(model.currentSong?.duration.seconds ?? 0, specifier: "%.2f")")
                             .font(.system(.subheadline))
                 }
 
@@ -57,13 +50,11 @@ struct PlayerView: View, PlayerSongUser {
                     Button(action: {
                         Player.rewind()
                         isPlayToggled = Player.isPlaying()
-                        updateSong()
                     }) {
                         ZStack {
                             Circle()
                                     .frame(width: 80, height: 80)
                                     .accentColor(.black)
-                                    .shadow(radius: 10)
                             Image(systemName: "backward.fill")
                                     .foregroundColor(.white)
                                     .font(.system(.title))
@@ -76,13 +67,11 @@ struct PlayerView: View, PlayerSongUser {
                             Player.play()
                         }
                         isPlayToggled = Player.isPlaying()
-                        updateSong()
                     }) {
                         ZStack {
                             Circle()
                                     .frame(width: 80, height: 80)
                                     .accentColor(.black)
-                                    .shadow(radius: 10)
                             Image(systemName: isPlayToggled ? "pause.fill" : "play.fill")
                                     .foregroundColor(.white)
                                     .font(.system(.title))
@@ -91,13 +80,11 @@ struct PlayerView: View, PlayerSongUser {
                     Button(action: {
                         Player.skip()
                         isPlayToggled = Player.isPlaying()
-                        updateSong()
                     }) {
                         ZStack {
                             Circle()
                                     .frame(width: 80, height: 80)
                                     .accentColor(.black)
-                                    .shadow(radius: 10)
                             Image(systemName: "forward.fill")
                                     .foregroundColor(.white)
                                     .font(.system(.title))
@@ -107,14 +94,25 @@ struct PlayerView: View, PlayerSongUser {
             }
         }
     }
+}
 
-   // TODO: не работает нормально почему то при вызове по протоколу
-   public func updateSong() {
-        Task {
-            if let song = Player.getCurrentSong() {
-                currentSong = song
-                currentArtwork = await song.getArtwork()
-            }
-        }
+class PlayerViewModel : ObservableObject, PlayerSongUser {
+    @Published var currentSong: Song?
+    @Published var currentArtwork: UIImage?
+    
+    init() {
+        Player.concreteUser(user: self)
     }
+
+    public func updateSong() {
+         Task {
+             if let song = Player.getCurrentSong() {
+                 currentSong = song
+                 currentArtwork = await song.getArtwork()
+             } else {
+                 currentSong = nil
+                 currentArtwork = nil
+             }
+         }
+     }
 }
