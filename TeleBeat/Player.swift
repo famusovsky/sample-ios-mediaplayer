@@ -7,12 +7,14 @@
 
 import Foundation
 import AVFoundation
+import SwiftUI
 
 public class Player {
     private static var player: AVPlayer! = AVPlayer()
-    private static var songs: [Song] = []
+    @State public static var songs: [Song] = []
     private static var current: Int = 0
-    private static var user: PlayerUser?
+    private static var songUsers: [PlayerSongUser] = []
+    private static var queueUsers: [PlayerQueueUser] = []
     private static var isPlayToggled: Bool = false
 
     static func play() {
@@ -60,6 +62,10 @@ public class Player {
     private static func concreteCurrentSong() {
         if songs.count != 0 {
             let song = songs[current]
+            for user in songUsers {
+                user.updateSong()
+            }
+
             print("playing \(song.url): \(song.name)")
             do {
                 //TODO: add error handling and make normal
@@ -76,6 +82,9 @@ public class Player {
     static func addSong(song: Song?) {
         if let song = song {
             songs.append(song)
+            for user in queueUsers {
+                user.updateQueue()
+            }
 
             if songs.count == 1 {
                 concreteCurrentSong()
@@ -91,13 +100,21 @@ public class Player {
         }
     }
 
-    static func concreteUser(user: PlayerUser) {
-        self.user = user
-        print("user is added")
+    static func concreteUser(user: PlayerSongUser) {
+        songUsers.append(user)
+        print("song user is added")
+    }
+
+    static func concreteUser(user: PlayerQueueUser) {
+        queueUsers.append(user)
+        print("queue user is added")
     }
 
     static func isPlaying() -> Bool {
         isPlayToggled
     }
-}
 
+    static func getQueue() -> [Song] {
+        songs
+    }
+}

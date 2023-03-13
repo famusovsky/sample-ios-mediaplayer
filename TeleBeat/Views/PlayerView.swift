@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlayerView: View, PlayerUser {
+struct PlayerView: View, PlayerSongUser {
     @State var currentSong: Song?
     @State var currentArtwork: UIImage?
     @State var isPlayToggled: Bool = false
@@ -31,7 +31,7 @@ struct PlayerView: View, PlayerUser {
                 }) {
                     Image(systemName: "plus.app")
                             .font(.system(.title))
-                            .foregroundColor(.pink)
+                            .foregroundColor(.black)
                             .shadow(radius: 10)
                             .position(x: geometry.size.width * 8 / 10, y: geometry.size.height / 10)
                 }
@@ -62,7 +62,7 @@ struct PlayerView: View, PlayerUser {
                         ZStack {
                             Circle()
                                     .frame(width: 80, height: 80)
-                                    .accentColor(.pink)
+                                    .accentColor(.black)
                                     .shadow(radius: 10)
                             Image(systemName: "backward.fill")
                                     .foregroundColor(.white)
@@ -81,7 +81,7 @@ struct PlayerView: View, PlayerUser {
                         ZStack {
                             Circle()
                                     .frame(width: 80, height: 80)
-                                    .accentColor(.pink)
+                                    .accentColor(.black)
                                     .shadow(radius: 10)
                             Image(systemName: isPlayToggled ? "pause.fill" : "play.fill")
                                     .foregroundColor(.white)
@@ -96,7 +96,7 @@ struct PlayerView: View, PlayerUser {
                         ZStack {
                             Circle()
                                     .frame(width: 80, height: 80)
-                                    .accentColor(.pink)
+                                    .accentColor(.black)
                                     .shadow(radius: 10)
                             Image(systemName: "forward.fill")
                                     .foregroundColor(.white)

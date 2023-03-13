@@ -15,7 +15,10 @@ struct ContentView: View {
         TabView(selection: $selection) {
             PlayerView()
                 .tag(0)
+            QueueView()
+                .tag(1)
         }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }
 

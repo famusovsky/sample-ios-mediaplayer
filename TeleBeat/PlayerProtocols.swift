@@ -5,6 +5,10 @@
 import Foundation
 import SwiftUI
 
-protocol PlayerUser {
+protocol PlayerSongUser {
     func updateSong()
+}
+
+protocol PlayerQueueUser {
+    func updateQueue()
 }
