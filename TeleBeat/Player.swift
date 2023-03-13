@@ -46,9 +46,6 @@ public class Player {
                 current = num
                 print(current, songs.count)
                 concreteCurrentSong()
-                if isPlaying() {
-                    player.play()
-                }
             } else {
                 if num >= songs.count {
                     current = songs.count - 1
@@ -56,6 +53,13 @@ public class Player {
                     current = 0
                 }
             }
+        }
+    }
+
+    static func seek(time: Double) {
+        if player != nil {
+            let time = CMTime(seconds: time, preferredTimescale: 1)
+            player.seek(to: time)
         }
     }
 
@@ -71,12 +75,14 @@ public class Player {
                 let playerItem = AVPlayerItem(url: song.url)
                 player = AVPlayer(playerItem: playerItem)
                 player.volume = 1.0
-                print(isPlaying())
             } catch {
                 print("AVAudioPlayer init failed")
             }
         } else {
             player = AVPlayer()
+        }
+        if isPlaying() {
+            player.play()
         }
     }
 
@@ -117,6 +123,14 @@ public class Player {
             return songs[current]
         } else {
             return nil
+        }
+    }
+
+    static func getCurrentTime() -> TimeInterval {
+        if player != nil {
+            return player.currentTime().seconds
+        } else {
+            return 0
         }
     }
 
