@@ -7,23 +7,35 @@ import SwiftUI
 
 struct QueueView: View {
     @ObservedObject var model = QueueViewModel()
+    @State var isDeletionHidden = true
 
     var body: some View {
         VStack {
-            Text("Now playing: \(model.currentSong ?? "Nothing")")
+            HStack {
+                Text("Now playing: \(model.currentSong ?? "Nothing")")
+                Button(action: {
+                    isDeletionHidden.toggle()
+                }) {
+                    Text(isDeletionHidden ? "Выбрать" : "Отменить")
+                }
+            }
             List {
                 ForEach(model.songs.indices, id: \.self) { index in
                     HStack {
                         Button(action: {
-                            Player.setupSongNumber(num: index)
+                            if isDeletionHidden {
+                                Player.setupSongNumber(num: index)
+                            } else {
+                                Player.removeSong(index: index)
+                            }
                         }) {
-                            Text(model.songs[index])
-                        }
-                        Spacer()
-                        Button(action: {
-                            Player.removeSong(index: index)
-                        }) {
-                            Image(systemName: "minus.circle")
+                            HStack {
+                                Text(model.songs[index])
+                                if !isDeletionHidden {
+                                    Spacer()
+                                    Image(systemName: "trash.circle.fill")
+                                }
+                            }
                         }
                     }
                 }

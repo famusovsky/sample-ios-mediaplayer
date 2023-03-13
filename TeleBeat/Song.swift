@@ -33,6 +33,11 @@ public extension Song {
             print(error)
         }
 
+        print("Common metadata: \(commonMetadata.count)")
+        for item in commonMetadata {
+            print(item)
+        }
+
         var name: String?
         var artist: String?
         var album: String?
@@ -59,7 +64,7 @@ public extension Song {
             switch key {
             case "title": name = value as? String
             case "artist": artist = value as? String
-            case "album": album = value as? String
+            case "albumName": album = value as? String
             default:
                 continue
             }

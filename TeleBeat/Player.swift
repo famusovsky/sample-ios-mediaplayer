@@ -75,6 +75,8 @@ public class Player {
             } catch {
                 print("AVAudioPlayer init failed")
             }
+        } else {
+            player = AVPlayer()
         }
     }
 
