@@ -15,8 +15,13 @@
 		3FBC279029BCE28D004895DD /* TGclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBC278F29BCE28D004895DD /* TGclient.swift */; };
 		3FCBEBB429B4E68B0036A226 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBEBB329B4E68B0036A226 /* PlayerView.swift */; };
 		3FCBEBB729B4F1640036A226 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBEBB629B4F1640036A226 /* Player.swift */; };
+		D317C029A95FB1C5977D8C13 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C041C05CA78F059604C9 /* AuthService.swift */; };
 		D317C02A089DDA04627FC19F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CAC457A203766D956533 /* Song.swift */; };
+		D317C3C59520BDC901AD55A0 /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C4B9887B47F51E0DA501 /* ServiceLayer.swift */; };
+		D317C4E1BE47876F3C513F82 /* TelegramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C4403FEED7018F9694E4 /* TelegramService.swift */; };
+		D317C59736C74D7D29333D38 /* ChatListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CEFEDF678CB93B09D835 /* ChatListService.swift */; };
 		D317C5DEAB8C58946B31B394 /* PlayerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C61C702F2E1FB7510915 /* PlayerObserver.swift */; };
+		D317C9ECE345A433E66C140E /* StdOutLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C16F3FB26F8DB6D89AF6 /* StdOutLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +33,13 @@
 		3FBC278F29BCE28D004895DD /* TGclient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGclient.swift; sourceTree = "<group>"; };
 		3FCBEBB329B4E68B0036A226 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		3FCBEBB629B4F1640036A226 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D317C041C05CA78F059604C9 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		D317C16F3FB26F8DB6D89AF6 /* StdOutLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StdOutLogger.swift; sourceTree = "<group>"; };
+		D317C4403FEED7018F9694E4 /* TelegramService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramService.swift; sourceTree = "<group>"; };
+		D317C4B9887B47F51E0DA501 /* ServiceLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
 		D317C61C702F2E1FB7510915 /* PlayerObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerObserver.swift; sourceTree = "<group>"; };
 		D317CAC457A203766D956533 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		D317CEFEDF678CB93B09D835 /* ChatListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +59,8 @@
 			children = (
 				3F03AC8D29993BCE00BCF09F /* TeleBeat */,
 				3F03AC8C29993BCE00BCF09F /* Products */,
+				D317C4B9887B47F51E0DA501 /* ServiceLayer.swift */,
+				D317C16F3FB26F8DB6D89AF6 /* StdOutLogger.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +85,9 @@
 				D317CAC457A203766D956533 /* Song.swift */,
 				D317C61C702F2E1FB7510915 /* PlayerObserver.swift */,
 				3FBC278F29BCE28D004895DD /* TGclient.swift */,
+				D317C041C05CA78F059604C9 /* AuthService.swift */,
+				D317C4403FEED7018F9694E4 /* TelegramService.swift */,
+				D317CEFEDF678CB93B09D835 /* ChatListService.swift */,
 			);
 			path = TeleBeat;
 			sourceTree = "<group>";
@@ -175,6 +190,11 @@
 				3FBC279029BCE28D004895DD /* TGclient.swift in Sources */,
 				D317C02A089DDA04627FC19F /* Song.swift in Sources */,
 				D317C5DEAB8C58946B31B394 /* PlayerObserver.swift in Sources */,
+				D317C029A95FB1C5977D8C13 /* AuthService.swift in Sources */,
+				D317C4E1BE47876F3C513F82 /* TelegramService.swift in Sources */,
+				D317C59736C74D7D29333D38 /* ChatListService.swift in Sources */,
+				D317C3C59520BDC901AD55A0 /* ServiceLayer.swift in Sources */,
+				D317C9ECE345A433E66C140E /* StdOutLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@ public class Player {
     private static var current: Int = 0
     private static var user: PlayerUser?
     private static var isPlayToggled: Bool = false
-    private static let tgClient = TGClient()
+    private static let tgClient = try! TGClient()
 
     static func play() {
         if let player = player {
@@ -99,6 +99,13 @@ public class Player {
 
     static func isPlaying() -> Bool {
         isPlayToggled
+    }
+
+    static func testTG() async {
+        // await tgClient.setUp()
+        //let num = await tgClient.getChatID()
+        //print(num)
+        //await tgClient.test(chatId: num)
     }
 }
 

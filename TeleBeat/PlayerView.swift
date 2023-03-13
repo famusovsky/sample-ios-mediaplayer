@@ -108,8 +108,8 @@ struct PlayerView: View, PlayerUser {
         }
     }
 
-   // TODO: не работает нормально почему то при вызове по протоколу
-   public func updateSong() {
+    // TODO: не работает нормально почему то при вызове по протоколу
+    public func updateSong() {
         Task {
             if let song = Player.getCurrentSong() {
                 currentSong = song
