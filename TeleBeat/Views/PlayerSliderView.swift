@@ -14,8 +14,10 @@ struct PlayerSliderView: View {
 
     var body: some View {
         VStack {
+            Text("\(Int(model.currentSongDuration) / 60):\(Int(model.currentSongDuration) % 60) "
+                    + " > \(Int(model.currentSongProgress) / 60):\(Int(model.currentSongProgress) % 60) мин.")
             HStack {
-                Spacer()
+                Spacer(minLength: 36)
                 CoolSlider(value: $model.currentSongProgress, lastCoordinateValue: model.currentSongDuration,
                         onEditingChangeStart: {
                             model.pauseTimer()
@@ -25,8 +27,7 @@ struct PlayerSliderView: View {
                             model.updateTimer()
                         })
                         .frame(height: 30)
-                Spacer()
-                Text("\(Int(model.currentSongDuration) / 60):\(Int(model.currentSongDuration) % 60)")
+                Spacer(minLength: 36)
             }
         }
     }

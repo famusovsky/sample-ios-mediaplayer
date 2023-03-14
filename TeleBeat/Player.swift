@@ -34,6 +34,7 @@ public class Player {
         if let player = player {
             if player.currentItem == nil {
                 concreteCurrentSong()
+                play()
             }
             player.play()
             isPlayToggled = true
