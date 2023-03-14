@@ -14,11 +14,13 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selection) {
             PlayerView()
-                .tag(0)
+                    .tag(0)
             QueueView()
-                .tag(1)
+                    .tag(1)
+            SearchView()
+                    .tag(2)
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }
 
