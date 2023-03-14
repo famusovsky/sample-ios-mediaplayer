@@ -43,8 +43,6 @@ struct PlayerView: View {
                         .cornerRadius(20)
                         .shadow(radius: 10)
                         .frame(width: geometry.size.width / 2, height: geometry.size.width / 2)
-                        .position(x: geometry.size.width / 2, y: -geometry.size.height / 40)
-
                 VStack(spacing: 8) {
                     Text(model.currentSong?.name ?? "")
                             .font(.system(.title).bold())
@@ -97,6 +95,7 @@ struct PlayerView: View {
                             }
                         }
                     }
+                    Spacer()
                 }
             }
         }

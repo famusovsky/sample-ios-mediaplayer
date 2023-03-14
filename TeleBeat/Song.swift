@@ -33,11 +33,6 @@ public extension Song {
             print(error)
         }
 
-        print("Common metadata: \(commonMetadata.count)")
-        for item in commonMetadata {
-            print(item)
-        }
-
         var name: String?
         var artist: String?
         var album: String?

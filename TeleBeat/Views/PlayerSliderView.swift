@@ -18,7 +18,8 @@ struct PlayerSliderView: View {
                     + " > \(Int(model.currentSongProgress) / 60):\(Int(model.currentSongProgress) % 60) мин.")
             HStack {
                 Spacer(minLength: 36)
-                CoolSlider(value: $model.currentSongProgress, lastCoordinateValue: model.currentSongDuration,
+                CoolSlider(value: $model.currentSongProgress, duration: $model.currentSongDuration,
+                        lastCoordinateValue: model.currentSongDuration,
                         onEditingChangeStart: {
                             model.pauseTimer()
                         },
@@ -79,6 +80,7 @@ class PlayerSliderModel: ObservableObject, PlayerSongUser, PlayerIsPlayingUser {
 // Got from https://swdevnotes.com/swift/2021/how-to-customise-the-slider-in-swiftui/
 struct CoolSlider: View {
     @Binding var value: Double
+    @Binding var duration: Double
     @State var lastCoordinateValue: CGFloat = 0.0
     var onEditingChangeStart: () -> Void
     var onEditingChangeFinish: () -> Void
@@ -88,7 +90,7 @@ struct CoolSlider: View {
             let thumbSize = gr.size.height * 0.8
             let radius = gr.size.height * 0.5
             let minValue = gr.size.width * 0.015
-            let maxValue = (gr.size.width * 0.98) - thumbSize
+            let maxValue = (gr.size.width * 0.98) - thumbSize / 2
 
             ZStack {
                 RoundedRectangle(cornerRadius: radius)
@@ -97,20 +99,19 @@ struct CoolSlider: View {
                     Circle()
                             .foregroundColor(Color.white)
                             .frame(width: thumbSize, height: thumbSize)
-                            .offset(x: self.value)
+                            .offset(x: value / duration * (maxValue - minValue))
                             .gesture(
-
                                     DragGesture(minimumDistance: 0)
                                             .onChanged { v in
                                                 onEditingChangeStart()
 
                                                 if (abs(v.translation.width) < 0.1) {
-                                                    self.lastCoordinateValue = self.value
+                                                    self.lastCoordinateValue = value / duration * (maxValue - minValue)
                                                 }
                                                 if v.translation.width > 0 {
-                                                    self.value = min(maxValue, self.lastCoordinateValue + v.translation.width)
+                                                    value = (lastCoordinateValue + v.translation.width) * duration / (maxValue - minValue)
                                                 } else {
-                                                    self.value = max(minValue, self.lastCoordinateValue + v.translation.width)
+                                                    self.value = (lastCoordinateValue + v.translation.width) * duration / (maxValue - minValue)
                                                 }
 
                                                 onEditingChangeFinish()

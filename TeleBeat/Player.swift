@@ -39,9 +39,7 @@ public class Player {
             player.play()
             isPlayToggled = true
 
-            for user in isPlayingUsers {
-                user.updateIsPlaying()
-            }
+            notifyIsPlayingUsers()
         }
     }
 
@@ -50,9 +48,7 @@ public class Player {
             player.pause()
             isPlayToggled = false
 
-            for user in isPlayingUsers {
-                user.updateIsPlaying()
-            }
+            notifyIsPlayingUsers()
         }
     }
 
@@ -83,9 +79,7 @@ public class Player {
 
     private static func concreteCurrentSong() {
         if player.currentItem != nil {
-            for user in songUsers {
-                user.updateSong()
-            }
+            notifySongUsers()
         }
         if songs.count != 0 {
             let song = songs[current]
@@ -119,13 +113,12 @@ public class Player {
             songs.append(song)
             updateUserDefaults()
 
-            for user in queueUsers {
-                user.updateQueue()
-            }
+            notifyQueueUsers()
             print("song \(song.name) is added")
 
             if songs.count == 1 {
                 concreteCurrentSong()
+                notifySongUsers()
             }
         }
     }
@@ -135,9 +128,7 @@ public class Player {
             songs.remove(at: index)
             updateUserDefaults()
 
-            for user in queueUsers {
-                user.updateQueue()
-            }
+            notifyQueueUsers()
             if index < current {
                 current -= 1
             } else if index == current {
@@ -190,6 +181,24 @@ public class Player {
             return player.currentTime().seconds
         } else {
             return 0
+        }
+    }
+
+    static func notifySongUsers() {
+        for user in songUsers {
+            user.updateSong()
+        }
+    }
+
+    static func notifyQueueUsers() {
+        for user in queueUsers {
+            user.updateQueue()
+        }
+    }
+
+    static func notifyIsPlayingUsers() {
+        for user in isPlayingUsers {
+            user.updateIsPlaying()
         }
     }
 }

@@ -13,6 +13,7 @@ struct QueueView: View {
         VStack {
             HStack {
                 Text("Сейчас играет: \(model.currentSong ?? "Nothing")")
+                        .italic()
                         .bold()
                 Button(action: {
                     isDeletionHidden.toggle()
@@ -32,6 +33,7 @@ struct QueueView: View {
                         }) {
                             HStack {
                                 Text(model.songs[index])
+                                        .foregroundColor(Color.black)
                                 if !isDeletionHidden {
                                     Spacer()
                                     Image(systemName: "trash.circle.fill")
