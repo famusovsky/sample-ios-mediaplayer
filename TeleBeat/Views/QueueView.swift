@@ -13,6 +13,7 @@ struct QueueView: View {
         VStack {
             HStack {
                 Text("Now playing: \(model.currentSong ?? "Nothing")")
+                        .bold()
                 Button(action: {
                     isDeletionHidden.toggle()
                 }) {

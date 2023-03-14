@@ -15,6 +15,7 @@ public class Player {
     private static var current: Int = 0
     private static var songUsers: [PlayerSongUser] = []
     private static var queueUsers: [PlayerQueueUser] = []
+    private static var isPlayingUsers: [PlayerIsPlayingUser] = []
     private static var isPlayToggled: Bool = false
 
     static private func getFromUserDefaults() -> [Song]? {
@@ -31,8 +32,15 @@ public class Player {
 
     static func play() {
         if let player = player {
+            if player.currentItem == nil {
+                concreteCurrentSong()
+            }
             player.play()
             isPlayToggled = true
+
+            for user in isPlayingUsers {
+                user.updateIsPlaying()
+            }
         }
     }
 
@@ -40,6 +48,10 @@ public class Player {
         if let player = player {
             player.pause()
             isPlayToggled = false
+
+            for user in isPlayingUsers {
+                user.updateIsPlaying()
+            }
         }
     }
 
@@ -68,16 +80,11 @@ public class Player {
         }
     }
 
-    static func seek(time: Double) {
-        if player != nil {
-            let time = CMTime(seconds: time, preferredTimescale: 1)
-            player.seek(to: time)
-        }
-    }
-
     private static func concreteCurrentSong() {
-        for user in songUsers {
-            user.updateSong()
+        if player.currentItem != nil {
+            for user in songUsers {
+                user.updateSong()
+            }
         }
         if songs.count != 0 {
             let song = songs[current]
@@ -95,6 +102,14 @@ public class Player {
         }
         if isPlaying() {
             player.play()
+        }
+    }
+
+
+    static func seek(time: Double) {
+        if player != nil {
+            let time = CMTime(seconds: time, preferredTimescale: 1)
+            player.seek(to: time)
         }
     }
 
@@ -136,7 +151,7 @@ public class Player {
 
     static private func updateUserDefaults() {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(songs){
+        if let encoded = try? encoder.encode(songs) {
             UserDefaults.standard.set(encoded, forKey: "songs")
         }
     }
@@ -149,22 +164,16 @@ public class Player {
         }
     }
 
-    static func getCurrentTime() -> TimeInterval {
-        if player != nil {
-            return player.currentTime().seconds
-        } else {
-            return 0
-        }
-    }
-
     static func concreteUser(user: PlayerSongUser) {
         songUsers.append(user)
-        print("song user is added")
     }
 
     static func concreteUser(user: PlayerQueueUser) {
         queueUsers.append(user)
-        print("queue user is added")
+    }
+
+    static func concreteUser(user: PlayerIsPlayingUser) {
+        isPlayingUsers.append(user)
     }
 
     static func isPlaying() -> Bool {
@@ -173,5 +182,13 @@ public class Player {
 
     static func getQueue() -> [Song] {
         songs
+    }
+
+    static func getCurrentTime() -> Double {
+        if player.currentItem != nil {
+            return player.currentTime().seconds
+        } else {
+            return 0
+        }
     }
 }

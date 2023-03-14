@@ -12,3 +12,7 @@ protocol PlayerSongUser {
 protocol PlayerQueueUser {
     func updateQueue()
 }
+
+protocol PlayerIsPlayingUser {
+    func updateIsPlaying()
+}

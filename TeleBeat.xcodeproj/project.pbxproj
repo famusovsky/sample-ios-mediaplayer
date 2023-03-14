@@ -15,6 +15,7 @@
 		D317C5DEAB8C58946B31B394 /* PlayerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C61C702F2E1FB7510915 /* PlayerProtocols.swift */; };
 		D317C5EBFF33E06E30860F5F /* QueueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C686A74884A077120B48 /* QueueView.swift */; };
 		D317C6DE266BBA9D334AFF20 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C4EAD8558C8D55AB0CF7 /* PlayerView.swift */; };
+		D317C75CBC8742FCCEBB890E /* PlayerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C9EA58DB6AED40263D0A /* PlayerSliderView.swift */; };
 		D317CDABCCDBEDDF2CB1D2C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C8DDD8E48A847B27F37C /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		D317C61C702F2E1FB7510915 /* PlayerProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerProtocols.swift; sourceTree = "<group>"; };
 		D317C686A74884A077120B48 /* QueueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueView.swift; sourceTree = "<group>"; };
 		D317C8DDD8E48A847B27F37C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D317C9EA58DB6AED40263D0A /* PlayerSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSliderView.swift; sourceTree = "<group>"; };
 		D317CAC457A203766D956533 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 				D317C4EAD8558C8D55AB0CF7 /* PlayerView.swift */,
 				D317C8DDD8E48A847B27F37C /* ContentView.swift */,
 				D317C686A74884A077120B48 /* QueueView.swift */,
+				D317C9EA58DB6AED40263D0A /* PlayerSliderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				D317C6DE266BBA9D334AFF20 /* PlayerView.swift in Sources */,
 				D317CDABCCDBEDDF2CB1D2C3 /* ContentView.swift in Sources */,
 				D317C5EBFF33E06E30860F5F /* QueueView.swift in Sources */,
+				D317C75CBC8742FCCEBB890E /* PlayerSliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
