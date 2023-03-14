@@ -18,7 +18,7 @@ struct QueueView: View {
                 Button(action: {
                     isDeletionHidden.toggle()
                 }) {
-                    Text(isDeletionHidden ? "Выбрать" : "Отменить")
+                    Text(isDeletionHidden ? "Удалить" : "Отменить")
                 }
             }
             List {

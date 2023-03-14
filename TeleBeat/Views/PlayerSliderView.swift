@@ -77,7 +77,7 @@ class PlayerSliderModel: ObservableObject, PlayerSongUser, PlayerIsPlayingUser {
     }
 }
 
-// Got from https://swdevnotes.com/swift/2021/how-to-customise-the-slider-in-swiftui/
+// Got partly from https://swdevnotes.com/swift/2021/how-to-customise-the-slider-in-swiftui/
 struct CoolSlider: View {
     @Binding var value: Double
     @Binding var duration: Double

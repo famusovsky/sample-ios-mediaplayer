@@ -42,7 +42,7 @@ struct PlayerView: View {
                         .resizable()
                         .cornerRadius(20)
                         .shadow(radius: 10)
-                        .frame(width: geometry.size.width / 2, height: geometry.size.width / 2)
+                        .frame(width: geometry.size.width * 3 / 4, height: geometry.size.width * 3 / 4)
                 VStack(spacing: 8) {
                     Text(model.currentSong?.name ?? "")
                             .font(.system(.title).bold())
