@@ -7,18 +7,18 @@ import AVFoundation
 import UIKit
 
 // TODO: сделать codable
-public struct Song {
+public struct Song : Codable {
     let name: String
     let artist: String
     let album: String
-    let duration: CMTime
+    let duration: Double
     let url: URL
 
-    init(name: String?, artist: String?, album: String?, duration: CMTime?, url: URL) {
+    init(name: String?, artist: String?, album: String?, duration: Double?, url: URL) {
         self.name = name ?? "Name is Unknown"
         self.artist = artist ?? "Artist is Unknown"
         self.album = album ?? "Album is Unknown"
-        self.duration = duration ?? CMTime(seconds: 0, preferredTimescale: 1)
+        self.duration = duration ?? 0
         self.url = url
     }
 }
@@ -41,9 +41,9 @@ public extension Song {
         var name: String?
         var artist: String?
         var album: String?
-        var duration: CMTime?
+        var duration: Double?
         do {
-            try await duration = data.load(.duration)
+            try await duration = Double(data.load(.duration).seconds)
         } catch {
             print(error)
         }

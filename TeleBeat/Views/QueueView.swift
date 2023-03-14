@@ -51,6 +51,9 @@ class QueueViewModel: ObservableObject, PlayerSongUser, PlayerQueueUser {
     init() {
         Player.concreteUser(user: self as PlayerSongUser)
         Player.concreteUser(user: self as PlayerQueueUser)
+
+        updateSong()
+        updateQueue()
     }
 
     func updateSong() {

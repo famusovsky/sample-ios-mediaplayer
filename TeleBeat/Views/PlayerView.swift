@@ -53,7 +53,7 @@ struct PlayerView: View {
                     Text(model.currentSong?.album ?? "")
                             .font(.system(.subheadline))
                     Text(model.currentSong != nil
-                            ? "\(model.currentSong?.duration.seconds ?? 0, specifier: "%.2f") seconds"
+                            ? "\(model.currentSong?.duration ?? 0, specifier: "%.2f") seconds"
                             : "")
                             .font(.system(.subheadline))
                 }

@@ -11,12 +11,23 @@ import SwiftUI
 
 public class Player {
     private static var player: AVPlayer! = AVPlayer()
-    public static var songs: [Song] = []
+    public static var songs: [Song] = getFromUserDefaults() ?? []
     private static var current: Int = 0
     private static var songUsers: [PlayerSongUser] = []
     private static var queueUsers: [PlayerQueueUser] = []
     private static var isPlayToggled: Bool = false
-    private static let tgClient = TGClient()
+
+    static private func getFromUserDefaults() -> [Song]? {
+        if let data = UserDefaults.standard.data(forKey: "songs") {
+            do {
+                let songs = try JSONDecoder().decode([Song].self, from: data)
+                return songs
+            } catch {
+                print("Error decoding songs")
+            }
+        }
+        return nil
+    }
 
     static func play() {
         if let player = player {
@@ -90,6 +101,8 @@ public class Player {
     static func addSong(song: Song?) {
         if let song = song {
             songs.append(song)
+            updateUserDefaults()
+
             for user in queueUsers {
                 user.updateQueue()
             }
@@ -104,6 +117,8 @@ public class Player {
     static func removeSong(index: Int) {
         if index >= 0 && index < songs.count {
             songs.remove(at: index)
+            updateUserDefaults()
+
             for user in queueUsers {
                 user.updateQueue()
             }
@@ -116,6 +131,13 @@ public class Player {
                 concreteCurrentSong()
             }
             print("song is removed")
+        }
+    }
+
+    static private func updateUserDefaults() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(songs){
+            UserDefaults.standard.set(encoded, forKey: "songs")
         }
     }
 
