@@ -71,13 +71,13 @@ class PlayerSliderModel: ObservableObject, PlayerSongUser, PlayerIsPlayingUser {
     }
 
     func updateTimer() {
+        self.currentSongProgress = Player.getCurrentTime()
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             self.currentSongProgress = Player.getCurrentTime()
         }
     }
 }
 
-// Got partly from https://swdevnotes.com/swift/2021/how-to-customise-the-slider-in-swiftui/
 struct CoolSlider: View {
     @Binding var value: Double
     @Binding var duration: Double

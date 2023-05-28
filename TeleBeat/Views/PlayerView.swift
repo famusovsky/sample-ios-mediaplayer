@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+// Temporal
 fileprivate let testLinks: [String] = [
-    "https://ru.hitmotop.com/get/music/20221217/INSTASAMKA_-_KAK_MOMMY_75305573.mp3",
-    "https://ru.hitmotop.com/get/music/20230223/DVRST_Igor_Sklyar_Atomic_Heart_-_Komarovo_75479753.mp3",
-    "https://ru.hitmotop.com/get/music/20220819/MJEJJBI_BJEJJBI_-_Pokhryukajj_74658629.mp3",
-    "https://ru.hitmotop.com/get/music/20211124/dora_-_Vtyurilas_73373030.mp3",
-    "https://ru.hitmotop.com/get/music/20211024/GAYAZOV_BROTHER_-_MALINOVAYA_LADA_73214200.mp3",
-    "https://ru.hitmotop.com/get/music/20190305/Korol_i_SHut_-_Prygnu_so_skaly_62570549.mp3",
-    "https://ru.hitmotop.com/get/music/20170831/Blondie_-_Call_Me_47868661.mp3"
+    "https://ru.apporange.space/get/music/20180921/Metric_-_Art_of_Doubt_59036709.mp3",
+    "https://ru.apporange.space/get/music/20230223/DVRST_Igor_Sklyar_Atomic_Heart_-_Komarovo_75479753.mp3",
+    "https://ru.apporange.space/get/music/20211124/dora_-_Vtyurilas_73373030.mp3",
+    "https://ru.apporange.space/get/music/20190305/Korol_i_SHut_-_Prygnu_so_skaly_62570549.mp3",
+    "https://ru.apporange.space/get/music/20170831/Blondie_-_Call_Me_47868661.mp3",
+    "https://ru.apporange.space/get/music/20190329/Rammstein_-_Deutschland_63121880.mp3",
+    "https://ru.apporange.space/get/music/20180921/Black_Honey_-_Hello_Today_59037303.mp3",
+    "https://ru.apporange.space/get/music/20170830/Zemfira_-_Romashki_47829688.mp3"
 ]
 
 struct PlayerView: View {
